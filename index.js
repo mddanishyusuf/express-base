@@ -1,8 +1,7 @@
 const express = require('express');
-
-const router = express.Router();
 // const path = require('path');
 const bodyParser = require('body-parser');
+const errorHandler = require('./api/middleware/error');
 
 const app = express();
 const port = process.env.PORT || 3000;
@@ -16,6 +15,8 @@ app.use(require('cors')());
 
 app.use('/currency', currencyRoute);
 app.use('/ipinfo', ipinfoRoute);
+
+app.use(errorHandler);
 
 app.listen(port);
 
